@@ -88,8 +88,55 @@ namespace Notepad
                     sw.WriteAsync(textBox.Text);
                     sw.Close();
                 }
-
                 MessageBox.Show("Your file has been saved.");
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ExitPopUp check = new ExitPopUp();
+            check.ShowDialog();
+            bool okayToSave = ExitPopUp.saveClicked;
+            bool dontSave = ExitPopUp.dontSaveClicked;
+
+            if(okayToSave == true)
+            {
+                if (File.Exists(directoryPath))
+                {
+                    using (StreamWriter sw = new StreamWriter(directoryPath))
+                    {
+                        sw.WriteAsync(textBox.Text);
+                        sw.Close();
+                    }
+
+                    MessageBox.Show("Your file has been saved.");
+                }
+                else
+                {
+                    SaveFileDialog save = new SaveFileDialog();
+                    save.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
+                    save.ShowDialog();
+
+                    if (save.FileName != "")
+                    {
+                        directoryPath = save.FileName;
+
+                        using (StreamWriter sw = new StreamWriter(directoryPath))
+                        {
+                            sw.WriteAsync(textBox.Text);
+                            sw.Close();
+                        }
+                        MessageBox.Show("Your file has been saved.");
+                    }
+                }
+            }
+            else if (dontSave == true)
+            {
+                MessageBox.Show("File not saved.");
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
     }

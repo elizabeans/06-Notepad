@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Notepad"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="650"
+        Closing="Window_Closing"
         >
     <Grid>
         <TextBox x:Name="textBox" Margin="0,30,0,0" TextWrapping="Wrap" AcceptsTab="True" AcceptsReturn="True" Text="Edit text here"/>
