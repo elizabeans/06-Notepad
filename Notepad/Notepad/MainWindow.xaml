@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Notepad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="650">
+        Title="MainWindow" Height="450" Width="650"
+        >
     <Grid>
         <TextBox x:Name="textBox" Margin="0,30,0,0" TextWrapping="Wrap" AcceptsTab="True" AcceptsReturn="True" Text="Edit text here"/>
-        <Button x:Name="buttonOpenFile" Content="Open File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="buttonOpenFile_Click"/>
+        <Button x:Name="buttonOpenFile" Content="Open File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="buttonOpenFile_Click" Margin="225,0,0,0"/>
         <Button x:Name="buttonSaveFile" Content="Save File" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" Width="75" Click="buttonSaveFile_Click"/>
+        <Button x:Name="buttonNewFile" Content="New File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="buttonNewFile_Click"/>
+        <Button x:Name="buttonSaveAsNew" Content="Save As.." HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="75" Click="buttonSaveAsNew_Click"/>
     </Grid>
 </Window>

@@ -32,6 +32,7 @@ namespace Notepad
         private void buttonOpenFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
             bool? userClickedOK = dialog.ShowDialog();
             directoryPath = dialog.FileName;
 
@@ -45,7 +46,6 @@ namespace Notepad
                 }
                 fileStream.Close();
             }
-           
         }
 
         private void buttonSaveFile_Click(object sender, RoutedEventArgs e)
@@ -57,6 +57,38 @@ namespace Notepad
                     sw.WriteAsync(textBox.Text);
                     sw.Close();
                 }
+
+                MessageBox.Show("Your file has been saved.");
+            }
+            else
+            {
+                buttonSaveAsNew_Click(sender, e);
+            }
+        }
+
+        private void buttonNewFile_Click(object sender, RoutedEventArgs e)
+        {
+            directoryPath = null;
+            textBox.Text = "";
+            MessageBox.Show("New file created!");
+        }
+
+        private void buttonSaveAsNew_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
+            save.ShowDialog();
+
+            if (save.FileName != "")
+            {
+                directoryPath = save.FileName;
+
+                using (StreamWriter sw = new StreamWriter(directoryPath))
+                {
+                    sw.WriteAsync(textBox.Text);
+                    sw.Close();
+                }
+
                 MessageBox.Show("Your file has been saved.");
             }
         }
