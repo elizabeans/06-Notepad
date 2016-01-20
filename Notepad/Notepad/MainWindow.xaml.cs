@@ -46,6 +46,7 @@ namespace Notepad
                     textBox.Text = reader.ReadToEnd();
                 }
                 fileStream.Close();
+                textChanged = false;
             }
         }
 
